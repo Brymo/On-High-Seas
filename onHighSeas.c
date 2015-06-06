@@ -25,11 +25,11 @@
 #define MUSO 51
 #define NAVIG 52
 #define FISHER 53
-       
+
 
 typedef struct _seadog{
 
-   
+
    char* name;
    int hunger;
    int skill;
@@ -75,7 +75,7 @@ typedef struct _crew{
 
    int gg;
 
-  
+
 
 }crew;
 
@@ -171,11 +171,13 @@ int main(int argc, char * argv[]){
 
    printf("Remember to keep morale up too!\n");
 
+   printf("Pick a number to begin!\n");
+
    printf(RESET);
 
    soItBegins(c);
 
-   printf("Sail past as many buoys as you can!");
+   printf("Thank you for playing!");
 
    allFree(c);
 
@@ -192,7 +194,7 @@ void soItBegins(Crew c){
 
       printf(BLUE"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 
-      
+
       printf(RESET"Buoys passed: %d\n", c->buoy);
       printf(MAGENTA"Kittens: %d\n"RESET, c->kittens);
       printf(YELLOW"Dubloons: %d\n"RESET, c->dubloons);
@@ -201,7 +203,7 @@ void soItBegins(Crew c){
 
       printf(BLUE"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"RESET);
 
-      printf("Please choose an action "); 
+      printf("Please choose an action ");
       printf(RED"(Actions Left: %d)\n"RESET, c->actionsLeft);
 
       printf("1)Sail\n");
@@ -215,7 +217,7 @@ void soItBegins(Crew c){
       printf("7)Play a song(-%d actions)\n", actionCost(c, 2));
       printf("8)Scan the sea(-%d actions)\n", actionCost(c, 3));
       printf("9)Fish for food(-%d actions)\n", actionCost(c, 4));
-      
+
 
       int input = goodGetChar();
 
@@ -243,7 +245,7 @@ void soItBegins(Crew c){
 
       }
 
-         
+
    }
 
 }
@@ -257,11 +259,11 @@ void actOnInput(Crew c, int userInput){
       if (career == 0){
 
          fish(c);
-         
+
       }else if (career == 1){
 
          scan(c);
-     
+
       }else if (career == 2){
 
          playTune(c);
@@ -269,9 +271,9 @@ void actOnInput(Crew c, int userInput){
       }else if (career == 3){
 
          hitSomething(c);
- 
+
       }else if (career == 4){
-        
+
          healAll(c);
 
       }
@@ -285,7 +287,7 @@ void actOnInput(Crew c, int userInput){
 
    }
 
-        
+
 
 }
 
@@ -304,7 +306,7 @@ void viewWound(Crew c){
    while(career <= 4){
 
          while(ID <= 2){
-               
+
                if(c->team[career][ID].wounded == TRUE){
 
                   isThereWounded = TRUE;
@@ -327,7 +329,7 @@ void viewWound(Crew c){
          printf("%s:ARRR! There be no-one on the list!\n", NPCname);
 
       }
-      
+
 
 }
 
@@ -345,7 +347,7 @@ void viewHunger(Crew c){
    while(career <= 4){
 
          while(ID <= 2){
-      
+
             if(c->team[career][ID].hunger > 50){
 
                printf(YELLOW);
@@ -359,7 +361,7 @@ void viewHunger(Crew c){
             printf("%s:%d/100\n",c->team[career][ID].name,c->team[career][ID].hunger);
 
             printf(RESET);
-         
+
             ID++;
 
          }
@@ -370,7 +372,7 @@ void viewHunger(Crew c){
 
       }
 
-      
+
 
 }
 
@@ -426,10 +428,10 @@ void sail(Crew c){
 
    int randInput = timeRand(20);
 
-   eat(c);  
+   eat(c);
 
    grub(c);
-   
+
    misery(c);
 
    c->buoy += (c->useful[3]*10)+(c->kittens);
@@ -463,14 +465,14 @@ void eat(Crew c){
          while(ID <= 2){
 
             if(c->team[career][ID].hunger <= lowestHunger){
-               
+
                lowestHunger = c->team[career][ID].hunger;
                currentLow = lowestHunger;
                lowest.career = career;
                lowest.ID = ID;
 
             }
-       
+
             ID++;
 
          }
@@ -492,15 +494,15 @@ void eat(Crew c){
          career = 2;
 
       }
-      
+
 
       if(c->food > 0 && lowestHunger <= 75){
 
          printf("%s ate some food.\n",c->team[lowest.career][lowest.ID].name );
-      
+
          feed(c, lowest.career, lowest.ID);
 
-      
+
       }
 
       ID = 0;
@@ -508,9 +510,9 @@ void eat(Crew c){
       lowest.ID = 0;
       lowest.career = 0;
 
-     
+
    }
-   
+
 }
 
 void randEvents(Crew c, int selection){
@@ -624,7 +626,7 @@ void merchantShip(Crew c){
 
      }
 
-     
+
 
   }else{
 
@@ -682,7 +684,7 @@ void CapnKitty(Crew c){
 
      }
 
-     
+
 
   }else{
 
@@ -721,7 +723,7 @@ void raidingParty(Crew c){
        c->useful[NPC.career]--;
 
        stolen(c, goldLoss);
-       
+
 
    }else if(guardsLeft == 1){
 
@@ -851,7 +853,7 @@ void jakeBoom(Crew c){
       int careerRand = rand()%5;
 
       int IDRand = rand()%3;
-      
+
       wounding(c, careerRand,IDRand);
 
       printf(RED"The resulting shockwave wounds %s\n"RESET,c->team[careerRand][IDRand].name);
@@ -907,7 +909,7 @@ void lotsADubloons(Crew c){
    c->dubloons += randCoins;
 
    printf(GREEN"Dubloons Left: %d\n"RESET, c->dubloons);
-   
+
 
 }
 
@@ -956,9 +958,9 @@ void sealOfKanhere(Crew c){
 
       printf("Kanhere...approves.\n");
       printf("The dust in the chest hardens into a seal of Kanhere.\n");
-      printf("You currently have %d seals\n", c->seals); 
+      printf("You currently have %d seals\n", c->seals);
 
-      
+
 
    }else{
 
@@ -1003,7 +1005,7 @@ seaDogDetails getValidNPC(Crew c){
       }
 
       curDog = c->team[randomCareer][randomID];
-         
+
 
    }
 
@@ -1041,7 +1043,7 @@ seaDogDetails getDeadNPC(Crew c){
       }
 
       curDog = c->team[randomCareer][randomID];
-         
+
 
    }
 
@@ -1083,7 +1085,7 @@ void grub(Crew c){
                isHungry(c,careerCount,teamCount);
 
                lastTime = lastTime*(lastTime-1);
- 
+
                srand(lastTime);
 
             }
@@ -1100,7 +1102,7 @@ void grub(Crew c){
 
    }
 
-   
+
 
 }
 
@@ -1231,13 +1233,13 @@ void speak(Crew c){
 
    }
 
-   
+
 
 }
 
 void talkTeam(Crew c, int input){
 
-   
+
    int alive = getAliveInTeam(c, input);
    int career = input - NUMOFFSET;
    int userInput;
@@ -1270,7 +1272,7 @@ void talkTeam(Crew c, int input){
 
    }else if (userInput == '2'){
 
-      
+
 
       if(c->dubloons >= cost){
 
@@ -1289,7 +1291,7 @@ void talkTeam(Crew c, int input){
 
 void activeSkills(Crew c, int skill){
 
-   
+
 
    if (skill == 0){
 
@@ -1300,7 +1302,7 @@ void activeSkills(Crew c, int skill){
       hitSomething(c);
 
    }else if (skill == 2){
-      
+
       playTune(c);
 
    }else if (skill == 3){
@@ -1378,7 +1380,7 @@ void hitSomething(Crew c){
          c->team[deadDog.career][deadDog.ID].alive = TRUE;
          c->useful[career]++;
 
-         
+
 
       }else{
 
@@ -1464,13 +1466,13 @@ char * songRand(){
 
 
    return songs[choice];
-  
+
 }
 
 void scan(Crew c){
 
   int thingSeen = timeRand(3);
-  
+
   if(thingSeen == 0){
 
      richBucksChest(c);
@@ -1487,7 +1489,7 @@ void scan(Crew c){
 
 }
 
-void strayKitten(Crew c){ 
+void strayKitten(Crew c){
 
    printf(CYAN"You navigators spot a kitten floating\n");
    printf(" buoys behind the ship.\n");
@@ -1527,7 +1529,7 @@ void fish(Crew c){
       i++;
 
    }
-   
+
    strcpy(fishType[0].type, "Shrimp");
    fishType[0].foodVal = 1;
 
@@ -1633,7 +1635,7 @@ int getAliveInTeam(Crew c, int input){
 
    }
 
-   return alive;   
+   return alive;
 
 }
 
@@ -1711,7 +1713,7 @@ void feed(Crew c, int career, int person){
 
 
 void postFeed(int hunger, char * name){
-   
+
    printf(YELLOW);
 
    if(hunger < 100/4){
@@ -1767,12 +1769,12 @@ void allFree (Crew c){
 void crewInitialise(Crew c){
 
    initialiseNames(c);
-   
+
    initialiseStats(c);
 
    initialiseBoat(c);
 
-   
+
 }
 
 void initialiseNames(Crew c){
@@ -1784,7 +1786,7 @@ void initialiseNames(Crew c){
    allocName(c,1,0,"Guard Joerick");
    allocName(c,1,1,"Guard Mitsuaki");
    allocName(c,1,2,"Guard Leon");
- 
+
    allocName(c,2,0,"Musician Michael");
    allocName(c,2,1,"Musician Luke");
    allocName(c,2,2,"Musician Matthew");
@@ -1815,7 +1817,7 @@ void initialiseStats(Crew c){
       career++;
 
    }
-  
+
 }
 
 void initialiseBoat(Crew c){
@@ -1828,7 +1830,7 @@ void initialiseBoat(Crew c){
 
    c->maxActions = 3;
    c->actionsLeft = 3;
- 
+
    c->seals = 0;
    c->kittens = 0;
 
@@ -1843,7 +1845,7 @@ void initialiseBoat(Crew c){
 
    }
 
-  
+
 
 }
 
@@ -1855,7 +1857,7 @@ void allocStats(Crew c, int career){
 
       while (count < 3){
 
-         
+
          c->team[career][count].skill = 20;
 
          c->team[career][count].hunger = 100;
@@ -1864,23 +1866,23 @@ void allocStats(Crew c, int career){
 
          c->team[career][count].wounded = FALSE;
 
-         
+
 
          count++;
 
       }
 
-   
 
-      
+
+
 
 
 }
 
 
 void allocName(Crew c, int career, int ID,char*name){
-   
-   c->team[career][ID].name = malloc(strlen(name));  
+
+   c->team[career][ID].name = malloc(strlen(name));
 
    strcpy(c->team[career][ID].name,name);
 
@@ -1922,7 +1924,7 @@ char * banf(){
 
    while(input != '\n'){
 
-      store[i] = input; 
+      store[i] = input;
 
       input = goodGetChar();
 
