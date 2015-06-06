@@ -161,23 +161,23 @@ int main(int argc, char * argv[]){
 
    printf("............................\n");
 
-   printf("Welcome to the High Seas.\n");
+   printf("Welcome to the High Seas!\n");
 
    Crew c = malloc(sizeof(crew));
 
-   printf("Keep your crew alive.\n");
+   printf("don't let your crew get hungry.\n");
 
    crewInitialise(c);
 
-   printf("Or suffer the consequences.\n");
+   printf("Remember to keep morale up too!\n");
 
    printf(RESET);
 
    soItBegins(c);
 
-   printf("Thank you for playing!");
+   printf("Sail past as many buoys as you can!");
 
-
+   allFree(c);
 
 
 return EXIT_SUCCESS;
@@ -190,7 +190,7 @@ void soItBegins(Crew c){
 
    while(c->gg == FALSE){
 
-      printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+      printf(BLUE"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 
       
       printf(RESET"Buoys passed: %d\n", c->buoy);
@@ -199,7 +199,7 @@ void soItBegins(Crew c){
       printf(GREEN"Food: %d\n"RESET, c->food);
       printf(CYAN"Morale: %d\n"RESET, c->morale);
 
-      printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+      printf(BLUE"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"RESET);
 
       printf("Please choose an action "); 
       printf(RED"(Actions Left: %d)\n"RESET, c->actionsLeft);
@@ -436,6 +436,8 @@ void sail(Crew c){
 
    randEvents(c, randInput);
 
+   c->actionsLeft = c->maxActions;
+
 }
 
 void eat(Crew c){
@@ -542,15 +544,9 @@ void randEvents(Crew c, int selection){
 
    }else{
 
-      calmSeas(c);
+      //calmSeas();
 
    }
-
-}
-
-void calmseas(Crew c){
-
-   printf(CYAN"The seas are calm.\n"RESET);
 
 }
 
@@ -613,6 +609,7 @@ void merchantShip(Crew c){
         printf("Merchant: That'll be %d dubloons!\n", toBuy*cost);
 
         c->dubloons -= toBuy*cost;
+        c->food += toBuy;
         printf(GREEN"Dubloons Left: %d\n"GREEN, c->dubloons);
 
         printf("Merchant: Thank You!  Come Again!\n");
@@ -670,6 +667,7 @@ void CapnKitty(Crew c){
         printf("Kitty: That'll be %d dubloons!\n", toBuy*cost);
 
         c->dubloons -= toBuy*cost;
+        c->kittens += toBuy;
         printf(GREEN"Dubloons Left: %d\n"RESET, c->dubloons);
 
         printf(MAGENTA"Kitty: Cya next time!\n");
