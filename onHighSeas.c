@@ -400,6 +400,7 @@ void useSeals(Crew c){
 
       c->maxActions++;
       c->actionsLeft = c->maxActions;
+      c->seals--;
 
    }else{
 
