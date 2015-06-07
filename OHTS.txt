@@ -1,0 +1,29 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+CRASH COURSE ON HIGH SEAS
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+As a captain of your ship, it is your job to keep your crew alive and happy.
+
+BUOYS
+To be the best pirates there ever was, you have to sail further than anyone ever has.  Distance on the high seas is measured with buoys.
+Hit sail to progress past buoys.
+Keep your navigators alive to ensure you're sailing at optimal speed.
+Amassing kittens will speed up the sailing process (your crew mates feel better around them).
+
+FOOD
+Every time you sail, your crew members get a little hungry and might take some food from your stores.
+If you run out of food for too long, crew members will start dying.
+You can buy food from merchant stores your come across while sailing.
+Fishing will nab you some food as well.
+
+
+MORALE
+If morale hits 0, your crew will mutiny.
+Play some music to boost morale
+
+
+ACTIONS
+You have a limited amount of actions each turn.
+Using skills will deduct actions (exception for sailing, viewing details, and activating seals)
+The death or wounding of a crew member will increase the cost of skills.
+Sail to refresh skills.
+Activating seals of Kanhere will increase the number of skills you can use each turn.
